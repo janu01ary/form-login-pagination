@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Blog</title>
+        <style>
+            body {
+                text-align: center;
+            }
+            hr {
+                border: 0.3px solid #DDAAFD;
+                background-color: #DDAAFD;
+                margin: 30px 0px;
+            }
+            .box {
+                width: 60%;
+                margin: 0 auto;
+                margin-top: 100px;
+                background-color: white;
+                border: 1px solid #DDAAFD;
+                border-radius: 10px;
+                padding: 40px 60px;
+            }
+            .title {
+                font-size: 30pt;
+                margin: 20px;
+                margin-bottom: 40px;
+            }
+            .btn {
+                background-color: #DDAAFD; 
+                color: white;
+                font-size: 12pt;
+                border: none;
+                padding: 10px;
+                width: 80px;
+                border-radius: 10px;
+                margin: 10px;
+            }
+            .btn:hover {
+                background-color: #BE57FE;
+            }
+            .btn:focus {
+                outline: none;
+            }
+            table {
+                margin: 50px auto;
+            }
+            td {
+                padding: 15px;
+            }
+            td > input {
+                border: 1px solid #DDAAFD;
+            }
+            textarea:focus, input:focus {
+                border-color: rgba(190, 87, 254, 0.5);
+                box-shadow: 0 1px 1px rgba(190, 87, 254, 0.075) inset, 0 0 8px rgba(190, 87, 254, 0.6);
+                outline: 0 none;
+            } 
+        </style>
+    </head>
+    {% extends 'base.html' %}
+    {% block contents %}
+    <body>
+        <div class="container">
+            <div class="box daehan">
+                <form method="POST" action="{%url 'signup'%}">
+                    {% csrf_token %}
+                    <p class="title bombaram">회원가입</p>
+                    <hr>
+                    <table>
+                        <tr>
+                            <td>사용자 이름</td>
+                            <td><input name="username" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>비밀번호</td>
+                            <td><input name="password1" type="password" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>비밀번호 확인</td>
+                            <td><input name="password2" type="password" value=""></td>
+                        </tr>
+                    </table>
+                    <input class="btn daehan" type="submit" value="가입">
+                </form>
+            </div>
+        </div>
+            <!-- <form method="POST" action="{%url 'signup'%}">
+                {%csrf_token%} {# 보안을 위해서 사용하는 난수 발생기, csrf공격을 방어하는 수단 POST방식으로 보낸다면 이걸 써주는 게 좋다#}
+                Username:
+                <br>
+                <input name="username" type="text" value="">
+                <br>
+                Password:
+                <br>
+                <input name="password1" type="password" value="">
+                <br>
+                Confirm Password:
+                <br>
+                <input name="password2" type="password" value="">
+                <br>
+                <br>
+                <input class="" type="submit" value="Sign Up!">
+            </form> -->
+    </body>
+    {% endblock %}
+</html>
