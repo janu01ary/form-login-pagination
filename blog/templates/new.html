@@ -73,7 +73,7 @@
     {% block contents %}
     <body>
         <div class="container">
-            <form method='POST'>
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mar">
                     {{form.as_p}}

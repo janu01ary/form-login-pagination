@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog.views.home, name='home'),
     path('blog/', include('blog.urls')),
-    path('newblog/', blog.views.blogpost, name='newblog'),
+    path('newblog/', blog.views.create, name='newblog'),
     path('update/<int:pk>', blog.views.update, name='update'),
     path('delete/<int:pk>', blog.views.delete, name='delete'),
     path('photo', photo.views.photo, name="photo"),

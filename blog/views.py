@@ -24,19 +24,20 @@ def detail(request, blog_id):
 def new(request):
     return render(request, 'new.html')
 
-def create(request): #입력받은 내용을 데이터베이스에 넣어주는 함수
-    blog = Blog()
-    blog.title = request.GET['title']
-    blog.body = request.GET['body']
-    blog.pub_date = timezone.datetime.now()
-    blog.save()
-    return redirect('/blog/' + str(blog.id))
+# def create(request): #입력받은 내용을 데이터베이스에 넣어주는 함수
+#     blog = Blog()
+#     blog.title = request.GET['title']
+#     blog.body = request.GET['body']
+#     blog.image = request.FILES['image']
+#     blog.pub_date = timezone.datetime.now()
+#     blog.save()
+#     return redirect('/blog/' + str(blog.id))
 
-def blogpost(request):  #crud 중 c
+def create(request):  #crud 중 c
     #1. 입력된 내용을 처리하는 기능 -> POST
     #2. 빈 페이지를 띄워주는 기능 -> GET
     if request.method =='POST':
-        form = BlogPost(request.POST)
+        form = BlogPost(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)  #아직 저장하지 말고
             post.pub_date=timezone.now()    #시간 저장하고 나서
@@ -52,7 +53,7 @@ def update(request, pk):
     blog = get_object_or_404(Blog, pk = pk)
 
     #해당 블로그 객체 pk에 맞는 입력공간 가져오기
-    form = BlogPost(request.POST, instance=blog)
+    form = BlogPost(request.POST, request.FILES, instance=blog)
 
     if form.is_valid():
         form.save()

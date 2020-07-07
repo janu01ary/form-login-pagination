@@ -37,7 +37,6 @@
                 padding: 20px;
                 margin: 10px;
                 font-family: 'Daehan', serif;
-                font-size: 12pt;
             }
             textarea {
                 height: 400px;
@@ -68,6 +67,17 @@
             .mar > ul {
                 display: none;
             }
+            #image-clear_id {
+                width: 13px;
+            }
+            #id_image {
+                border: none;
+                width: 330px;
+            }
+            p>a {
+                display: inline-block;
+                width: 300px;
+            }
             @media screen and (orientation: portrait) {
                 input, textarea {
                     width: 90%;
@@ -80,7 +90,7 @@
     <body>
         <div class="container">
             <div class="update daehan"><p>글을 수정합니다.</p></div>
-            <form method='POST'>
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mar daehan">
                     {{form.as_p}}

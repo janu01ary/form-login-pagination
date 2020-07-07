@@ -98,6 +98,10 @@
                 margin: 0 5px;
                 font-size: 12pt;
             }
+            img {
+                width: 100%;
+                max-width: 600px;
+            }
         </style>
     {% extends 'base.html' %}
     </head>
@@ -113,7 +117,12 @@
                         <a href="{%url 'delete' blog.id%}" class="btn2 daehan mar">삭제</a>
                     </div>
                     <hr>
-                    <p class="body">{{blog.body}}</p>
+                    <p class="body">
+                        {% if blog.image %}
+                        <img src="{{blog.image.url}}"><br>
+                        {% endif %}
+                        {{blog.body}}
+                    </p>
                 </div>
             </div>
             
